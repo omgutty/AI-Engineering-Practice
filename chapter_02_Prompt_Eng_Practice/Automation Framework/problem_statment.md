@@ -1,0 +1,1 @@
+you  have to generate a playwright  automation framework from scratch where you need to add rest assured API testing framework by using playwirght with Typescript 
