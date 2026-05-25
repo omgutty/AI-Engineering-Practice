@@ -1,0 +1,143 @@
+Test Case ID,Test Case Title,Module/Component,Type,Priority,Pre-conditions,Test Steps,Test Data,Expected Result,Actual Result,Status,Executed By,Execution Date,Pass/Fail,Remarks
+TC-001,Successful Login with Valid Credentials,Authentication - Login Panel,Functional,High,"1. User has a valid account with ICARUS
+2. User is not already logged in
+3. Browser is open and navigated to https://icarus.cloudamber.com/","1. On the Home Page, locate the Login Panel on the right side
+2. Enter valid username in the User Name field
+3. Enter corresponding valid password in the Password field
+4. Click the Login button
+5. Observe the response","Username: [valid admin account]
+Password: [valid password]","1. Login is successful
+2. User is redirected to the dashboard or home page
+3. Session is created and user remains logged in
+4. Login Panel disappears or changes to show logged-in user info",,"Not Executed",,,"Valid credentials required for execution. Ensure account exists in test environment."
+TC-002,Login with Empty Username Field,Authentication - Login Panel,Functional (Negative Test),High,"1. User is on the Home Page
+2. User is not logged in
+3. Login Panel is visible","1. On the Home Page, locate the Login Panel
+2. Leave the User Name field empty
+3. Enter valid password in the Password field
+4. Click the Login button
+5. Observe the validation behavior","Username: [empty]
+Password: [valid password]","1. Login fails
+2. An error message is displayed indicating 'Username is required' or similar validation message
+3. User remains on the same page
+4. Login Panel remains visible for retry",,"Not Executed",,,"Test client-side or server-side validation for empty username."
+TC-003,Login with Empty Password Field,Authentication - Login Panel,Functional (Negative Test),High,"1. User is on the Home Page
+2. User is not logged in
+3. Login Panel is visible","1. On the Home Page, locate the Login Panel
+2. Enter valid username in the User Name field
+3. Leave the Password field empty
+4. Click the Login button
+5. Observe the validation behavior","Username: [valid username]
+Password: [empty]","1. Login fails
+2. An error message is displayed indicating 'Password is required' or similar validation message
+3. User remains on the same page
+4. Login Panel remains visible for retry",,"Not Executed",,,"Test client-side or server-side validation for empty password."
+TC-004,Login with Invalid/Non-existent Username,Authentication - Login Panel,Functional (Negative Test),High,"1. User is on the Home Page
+2. User is not logged in
+3. Login Panel is visible
+4. Username does not exist in the system","1. On the Home Page, locate the Login Panel
+2. Enter a non-existent username in the User Name field
+3. Enter a valid password in the Password field
+4. Click the Login button
+5. Observe the response","Username: invaliduser123
+Password: [valid password format]","1. Login fails
+2. An error message is displayed (e.g., 'Invalid username or password', 'User not found', or generic authentication error)
+3. User remains on the same page
+4. Login Panel remains visible for retry
+5. No sensitive information is revealed",,"Not Executed",,,"Security best practice: Generic error messages prevent username enumeration attacks. Verify the message does not confirm/deny user existence."
+TC-005,Login with Incorrect Password,Authentication - Login Panel,Functional (Negative Test),High,"1. User is on the Home Page
+2. User is not logged in
+3. Login Panel is visible
+4. A valid username exists in the system","1. On the Home Page, locate the Login Panel
+2. Enter a valid username in the User Name field
+3. Enter an incorrect password in the Password field
+4. Click the Login button
+5. Observe the response","Username: [valid username]
+Password: wrongpassword123","1. Login fails
+2. An error message is displayed (e.g., 'Invalid username or password', 'Authentication failed', or similar)
+3. User remains on the same page
+4. Login Panel remains visible for retry
+5. Session is not created",,"Not Executed",,,"Security best practice: Error message should not differentiate between invalid username and invalid password."
+TC-006,Keep Me Logged In Checkbox - Valid Login,Authentication - Login Panel / Session Management,Functional,Medium,"1. User is on the Home Page
+2. User is not logged in
+3. Login Panel is visible with the 'Keep me logged in' checkbox
+4. Browser cookies are enabled","1. On the Home Page, locate the Login Panel
+2. Enter valid username in the User Name field
+3. Enter valid password in the Password field
+4. Check the 'Keep me logged in' checkbox
+5. Click the Login button
+6. Successfully log in
+7. Close the browser completely
+8. Reopen the browser and navigate to https://icarus.cloudamber.com/
+9. Verify user session state","Username: [valid username]
+Password: [valid password]","1. Initial login is successful
+2. 'Keep me logged in' checkbox is checked before login
+3. After browser restart, user is automatically logged in without needing to re-enter credentials
+4. User dashboard or home page is displayed
+5. Session cookie persists across browser sessions",,"Not Executed",,,"This test verifies persistent session functionality. Clear cookies before test if needed to ensure clean state. Check browser cookie settings and expiration time."
+TC-007,Forgot Password Link Navigation,Authentication - Login Panel / Password Recovery,Functional,Medium,"1. User is on the Home Page (https://icarus.cloudamber.com/)
+2. User is not logged in
+3. Login Panel is visible
+4. 'Forgot your password?' link is visible","1. On the Home Page, locate the Login Panel
+2. Look for the 'Forgot your password?' link
+3. Click on 'Click here' link next to 'Forgot your password?'
+4. Observe the page that loads
+5. Verify the URL and page content","N/A","1. Clicking the link navigates to the password reset/recovery page
+2. URL changes to http://admin.cloudamber.com/forgotpassword or similar
+3. Password recovery form or instructions are displayed
+4. User can enter email or username to initiate password reset process
+5. Navigation is successful without errors or broken links",,"Not Executed",,,"Verify that the link points to the correct recovery page. Check for 404 errors or broken redirects. Test in multiple browsers for consistency."
+TC-008,Social Media Links Navigation,Navigation - Social Media Links,Functional,Low,"1. User is on the Home Page (https://icarus.cloudamber.com/)
+2. Internet connection is active
+3. External social media pages are accessible
+4. Navigation section is visible with social media links","1. On the Home Page, locate the navigation section with social media links
+2. Verify links are present: Facebook, Twitter, RSS Feeds
+3. Click on 'Follow us on Facebook' link
+4. Verify the page that opens
+5. Navigate back to ICARUS Home Page
+6. Click on 'Follow us on Twitter' link
+7. Verify the page that opens
+8. Navigate back and repeat for RSS Feeds link","N/A","1. Facebook link opens: https://www.facebook.com/idoxgroup
+2. Twitter link opens: https://twitter.com/idoxtransport
+3. RSS Feeds link opens: http://transport.idoxgroup.com/index.php/news?alttemplate=newseventsRSS
+4. Each link opens in a new tab or window (or appropriate behavior)
+5. No 404 errors or broken links
+6. Pages load successfully",,"Not Executed",,,"External links may require manual verification if targets are blocked in test environment. Verify links open in appropriate target (new tab, same tab, etc.)."
+TC-009,Multiple Failed Login Attempts,Authentication - Login Panel / Security,Functional (Negative Test),High,"1. User is on the Home Page
+2. User is not logged in
+3. Login Panel is visible
+4. No account lockout is currently active","1. On the Home Page, locate the Login Panel
+2. Attempt login with invalid credentials
+3. Click the Login button
+4. Observe error message (Attempt #1)
+5. Enter different invalid credentials
+6. Click the Login button (Attempt #2)
+7. Observe error message
+8. Repeat steps 5-7 three more times (Attempts #3, #4, #5)
+9. After 5 failed attempts, try logging in with correct credentials
+10. Observe system response","5 combinations of invalid username/password:
+1. user1/wrongpass1
+2. user2/wrongpass2
+3. user3/wrongpass3
+4. user4/wrongpass4
+5. user5/wrongpass5
+Then: validuser/validpass","1. First 4 failed attempts show 'Invalid username or password' error
+2. Login Panel remains visible
+3. On 5th attempt, one of the following should occur: a) Account is temporarily locked with message 'Account locked due to multiple failed attempts' OR b) CAPTCHA challenge is presented OR c) Additional security prompt is displayed
+4. After account restriction, valid credentials do NOT allow login
+5. Error messages are consistent and user-friendly",,"Not Executed",,,"Security best practice: System should implement account lockout or CAPTCHA after multiple failed attempts to prevent brute-force attacks. Record how many attempts trigger security measures. If account is locked, document the unlock mechanism."
+TC-010,ICARUS Logo Navigation to Home Page,Navigation - Logo/Branding,Functional,Low,"1. User is on the Home Page (https://icarus.cloudamber.com/Home/Index)
+2. ICARUS logo is visible in the page header
+3. Logo is clickable (cursor changes to pointer)","1. Verify the ICARUS logo is displayed on the home page
+2. Hover over the ICARUS logo and verify the cursor changes to pointer (clickable)
+3. Click on the ICARUS logo
+4. Observe the page that loads
+5. Verify the URL and page content
+6. If available, navigate to another page within the application
+7. Click the ICARUS logo again
+8. Verify navigation back to home page","N/A","1. ICARUS logo is visible and clickable on all pages
+2. Cursor changes to pointer when hovering over the logo
+3. Clicking the logo navigates to the home page (https://icarus.cloudamber.com/Home/Index)
+4. Home page loads successfully
+5. Logo acts as a breadcrumb navigation element
+6. URL reflects home page after logo click",,"Not Executed",,,"Standard UX pattern: Logo should always link to home page. Verify this works consistently across the application. Test in multiple browsers and screen resolutions."
