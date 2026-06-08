@@ -12,7 +12,7 @@ import sys
 from pathlib import Path
 
 # Add tools directory to path
-tools_dir = Path(__file__).parent / "tools"
+tools_dir = Path(__file__).parent.parent / "tools"
 sys.path.insert(0, str(tools_dir))
 
 from fetch_jira_issue import JiraFetcher

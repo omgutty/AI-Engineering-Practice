@@ -1,0 +1,14 @@
+{
+  "buildCommand": "cd frontend && npm run build",
+  "outputDirectory": "frontend/build",
+  "framework": "react",
+  "env": [
+    "REACT_APP_API_URL"
+  ],
+  "regions": ["iad1"],
+  "functions": {
+    "backend/server.py": {
+      "runtime": "python3.9"
+    }
+  }
+}
