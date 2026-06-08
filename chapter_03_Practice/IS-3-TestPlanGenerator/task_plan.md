@@ -1,7 +1,7 @@
 # Task Plan: VWO-48 Test Plan Generator
 
 ## Objective
-Fetch JIRA ticket VWO-48 and generate a comprehensive Test Plan.
+Fetch JIRA ticket IS-3 and generate a comprehensive Test Plan.
 
 ## Phases & Checklists
 
