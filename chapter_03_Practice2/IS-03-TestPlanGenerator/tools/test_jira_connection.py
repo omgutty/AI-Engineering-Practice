@@ -7,17 +7,23 @@ Verifies that JIRA API is accessible and credentials are valid.
 import os
 import json
 import requests
+from pathlib import Path
 from dotenv import load_dotenv
 
-# Load environment variables
-load_dotenv(dotenv_path="../.env")
+# Load environment variables from parent directory
+env_path = Path(__file__).parent.parent / ".env"
+load_dotenv(dotenv_path=str(env_path))
 
 def test_jira_connection():
     """Test JIRA API connectivity and authentication."""
     
-    JIRA_URL = os.getenv("JIRA_URL")
-    JIRA_EMAIL = os.getenv("JIRA_EMAIL")
-    JIRA_API_TOKEN = os.getenv("JIRA_API_TOKEN")
+    JIRA_URL = os.getenv("JIRA_URL") or "https://cygnet-team-ca.atlassian.net/"
+    JIRA_EMAIL = os.getenv("JIRA_EMAIL") or "om.gutty@cygnet.one"
+    JIRA_API_TOKEN = os.getenv("JIRA_API_TOKEN") or ""
+    
+    print(f"DEBUG: JIRA_URL = {JIRA_URL}")
+    print(f"DEBUG: JIRA_EMAIL = {JIRA_EMAIL}")
+    print(f"DEBUG: JIRA_API_TOKEN = {'***' if JIRA_API_TOKEN else 'MISSING'}")
     
     if not all([JIRA_URL, JIRA_EMAIL, JIRA_API_TOKEN]):
         return {
